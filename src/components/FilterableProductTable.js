@@ -17,7 +17,7 @@ class FilterableProductTable extends React.Component {
 
   filterProducts(filterText, showOnlyInStock) {
     let productsToDisplay = this.state.products.filter(product =>
-      product.name.includes(filterText)
+      product.name.toLowerCase().includes(filterText.toLowerCase())
     );
     if (showOnlyInStock) {
       productsToDisplay = productsToDisplay.filter(product => product.stocked);

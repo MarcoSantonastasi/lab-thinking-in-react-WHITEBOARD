@@ -12,9 +12,12 @@ export default class Searchbar extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ filterText: event.target.value }, () =>
-      this.filterCallback(this.state.filterText, this.state.showOnlyInSotck)
-    );
+    this.setState({ filterText: event.target.value });
+  }
+  
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevState.filterText !== this.state.filterText)
+      this.filterCallback(this.state.filterText, this.state.showOnlyInSotck); // change of state on parent causes rerendering!
   }
 
   render() {
